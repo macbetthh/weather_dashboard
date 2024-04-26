@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <div class="container">
+        <aside id="sidebar">
+            <h2>Search History</h2>
+            <p id="search-history-subtitle">No search history</p>
+            <ul id="search-history"></ul>
+            <div id="unit-toggle-buttons">
+                <button id="celsius-button">Celsius</button>
+                <button id="fahrenheit-button">Fahrenheit</button>
+                <button id="meters-button">Meters</button>
+                <button id="kilometers-button">Kilometers</button>
+                <button id="miles-button">Miles</button>
+            </div>
+        </aside>
+        <main>
+            <form id="search-form" class="search-form">
+                <input type="text" id="city-input" placeholder="Enter city name" required>
+                <button type="submit">Search</button>
+            </form>
+            <section id="current-weather-info"></section>
+            <section id="forecast-info"></section>
+        </main>
+    </div>
+    <footer>
+        <h3>&copy; 2024 Weather Dashboard. All rights reserved.</h3>
+    </footer>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
