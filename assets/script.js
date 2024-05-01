@@ -140,13 +140,14 @@ function displayCurrentWeather(data) {
     const temperature = data.main.temp;
     const humidity = data.main.humidity;
     const windSpeed = data.wind.speed;
-
+    const icon =
     currentWeatherInfo.innerHTML = `
         <h3>${cityName}</h3>
         <p>Temperature: ${temperature} °${units === 'metric' ? 'C' : 'F'}</p>
         <p>Humidity: ${humidity}%</p>
         <p>Wind Speed: ${windSpeed} ${units === 'metric' ? 'm/s' : 'mph'}</p>
     `;
+    // add icon to list and template literal
 }
 
 // Function to display forecast
@@ -157,14 +158,19 @@ function displayForecast(data) {
     forecastInfo.innerHTML = '';
     const displayedDates = new Set();
 
-    forecastItems.forEach(item => {
-        const date = new Date(item.dt * 1000).toDateString();
-
+    for (let i = 4; i < forecastItems.length; i=i+8) {
+        const item = forecastItems[i];
+        const dateLog = new Date(forecastItems[i].dt * 1000).toDateString();
+        console.log(dateLog);
+        const icon = `https://openweathermap.org/img/wn/${forecastItems[i].weather[0].icon}.png`;
+        
+        
         if (!displayedDates.has(date)) {
             const temperature = item.main.temp;
             const humidity = item.main.humidity;
             const windSpeed = item.wind.speed;
             const forecastItem = document.createElement('div');
+            const icon =  
             forecastItem.classList.add('forecast-item');
             forecastItem.innerHTML = `
                 <h4>${date}</h4>
@@ -174,9 +180,8 @@ function displayForecast(data) {
             `;
 
             forecastInfo.appendChild(forecastItem);
-            displayedDates.add(date);
         }
-    });
+    };
 }
 
 
