@@ -88,39 +88,67 @@ function updateWeatherUnits() {
     });
 }
 
-// Function to store searched city in localStorage
+// Function to store searched city in localStorage -- but will also keep storage to a manageable limit to aide in recent storage readability and organization
 function storeSearchHistory(cityName) {
-    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-    searchHistory.push(cityName);
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+    // Remove duplicate entries
+    searchHistory = searchHistory.filter((item, index) => searchHistory.indexOf(item) === index);
+
+    // Add the new search to the beginning of the array
+    searchHistory.unshift(cityName);
+
+    // Limit the array to the latest 6 searches
+    searchHistory = searchHistory.slice(0, 6);
+
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
     displaySearchHistory();
 }
 
 // Function to display search history
+// Function to display search history
 function displaySearchHistory() {
     let searchHistoryList = JSON.parse(localStorage.getItem('searchHistory'));
-    searchHistory.innerHTML = '';
+    const searchHistoryElement = document.getElementById('search-history');
+
+    // Clear previous search history items
+    searchHistoryElement.innerHTML = '';
 
     if (searchHistoryList && searchHistoryList.length > 0) {
-        searchHistoryList.forEach(cityName => {
+        // Remove duplicate entries
+        searchHistoryList = searchHistoryList.filter((item, index) => searchHistoryList.indexOf(item) === index);
+
+        // Display only the latest 6 searches
+        const recentSearches = searchHistoryList.slice(0, 6);
+
+        recentSearches.forEach(cityName => {
             const searchItem = document.createElement('li');
             searchItem.textContent = cityName;
             searchItem.addEventListener('click', function() {
                 getWeatherData(cityName);
             });
 
-            searchHistory.appendChild(searchItem);
+            searchHistoryElement.appendChild(searchItem);
         });
     } else {
-        searchHistory.innerHTML = '<li>No search history available</li>';
+        // If no search history available, display the message
+        const noHistoryItem = document.createElement('li');
+        noHistoryItem.textContent = 'No search history available';
+        searchHistoryElement.appendChild(noHistoryItem);
     }
 }
 
-// Function to display current weather
+
+// Function to display current weatherhttps://chat.openai.com/c/6c712b53-75d1-42de-8094-2087defd4e24
 function displayCurrentWeather(data) {
     const cityName = data.name;
+    const country = data.sys.country;
     let temperature = data.main.temp;
     let windSpeed = data.wind.speed;
+
+    // Access the weather icon code
+    const weatherIconCode = data.weather[0].icon;
+    const iconUrl = `https://openweathermap.org/img/wn/${weatherIconCode}.png`;
 
     // Convert temperature and wind speed to imperial units if selected
     if (units === 'imperial') {
@@ -131,8 +159,10 @@ function displayCurrentWeather(data) {
     temperature = temperature.toFixed(2);
     windSpeed = windSpeed.toFixed(2);
 
+    // Update current weather info with the weather icon
     currentWeatherInfo.innerHTML = `
-        <h3>${cityName}</h3>
+        <h3>${cityName}, ${country}</h3>
+        <img src="${iconUrl}" alt="Weather Icon">
         <p>Temperature: <span class="temperature" data-temperature="${temperature}">${temperature} °${units === 'metric' ? 'C' : 'F'}</span></p>
         <p>Humidity: ${data.main.humidity}%</p>
         <p>Wind Speed: <span class="wind-speed" data-wind-speed="${windSpeed}">${windSpeed} ${units === 'metric' ? 'm/s' : 'mph'}</span></p>
