@@ -106,7 +106,6 @@ function storeSearchHistory(cityName) {
 }
 
 // Function to display search history
-// Function to display search history
 function displaySearchHistory() {
     let searchHistoryList = JSON.parse(localStorage.getItem('searchHistory'));
     const searchHistoryElement = document.getElementById('search-history');
@@ -139,7 +138,7 @@ function displaySearchHistory() {
 }
 
 
-// Function to display current weatherhttps://chat.openai.com/c/6c712b53-75d1-42de-8094-2087defd4e24
+// Function to display current weather
 function displayCurrentWeather(data) {
     const cityName = data.name;
     const country = data.sys.country;
@@ -150,14 +149,19 @@ function displayCurrentWeather(data) {
     const weatherIconCode = data.weather[0].icon;
     const iconUrl = `https://openweathermap.org/img/wn/${weatherIconCode}.png`;
 
-    // Convert temperature and wind speed to imperial units if selected
-    if (units === 'imperial') {
+    // Convert temperature to Fahrenheit if units are metric
+    if (units === 'metric') {
         temperature = (temperature * 9/5) + 32; // Convert temperature from Celsius to Fahrenheit
+    }
+
+    temperature = temperature.toFixed(2); // Format temperature to two decimal places
+
+    // Convert wind speed to mph if units are metric
+    if (units === 'metric') {
         windSpeed *= 2.237; // Convert wind speed from m/s to mph
     }
 
-    temperature = temperature.toFixed(2);
-    windSpeed = windSpeed.toFixed(2);
+    windSpeed = windSpeed.toFixed(2); // Format wind speed to two decimal places
 
     // Update current weather info with the weather icon
     currentWeatherInfo.innerHTML = `
@@ -168,6 +172,7 @@ function displayCurrentWeather(data) {
         <p>Wind Speed: <span class="wind-speed" data-wind-speed="${windSpeed}">${windSpeed} ${units === 'metric' ? 'm/s' : 'mph'}</span></p>
     `;
 }
+
 
 // Function to display forecast
 function displayForecast(data) {
