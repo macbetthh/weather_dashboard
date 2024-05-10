@@ -1,11 +1,14 @@
 /* Reset some default styles */
+* {
+    font-family: "Exo 2", sans-serif;
+}
+
 body, h1, h2, h3, p, ul {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
@@ -13,11 +16,9 @@ body {
 }
 
 header {
-    background-color: #3498db;
-    color: #fff;
     padding: 20px;
     text-align: center;
-    flex-shrink: 0; /* Prevent header from shrinking */
+    flex-shrink: 0;
 }
 
 header h1 {
@@ -25,72 +26,24 @@ header h1 {
     margin-bottom: 10px;
 }
 
-.container {
-    display: flex;
-    flex: 1; /* Fill remaining space */
-}
 
-#sidebar {
-    width: 200px;
-    background-color: #fff;
-    padding: 20px;
-    border-right: 1px solid #ccc;
-    flex-shrink: 0; /* Prevent sidebar from shrinking */
-}
 
-#sidebar h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
 
 main {
-    flex: 1; /* Fill remaining space */
+    flex: 1; 
     display: flex;
     flex-direction: column;
 }
 
-.search-form {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-}
-
-.search-form input[type="text"] {
-    flex: 1;
-    max-width: 800px;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.search-form button {
-    margin-left: 10px;
-    padding: 8px 16px;
-    font-size: 16px;
-    background-color: #2ecc71;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.search-form button:hover {
-    background-color: #27ae60;
-}
 
 section {
     margin-bottom: 30px;
 }
 
 footer {
-    background-color: #34495e;
-    color: #fff;
     padding: 20px;
     text-align: center;
-    flex-shrink: 0; /* Prevent footer from shrinking */
+    flex-shrink: 0; 
 }
 
 footer h3 {
@@ -106,4 +59,40 @@ ul li {
     margin-bottom: 5px;
 }
 
+.headerImg {
+    background-image: url('../assets/images/dashboardbanner-xl.gif');
+    background-size: cover;
+    background-position: center;
+    height: 256px; 
+    padding: 16px; 
+    color: white; 
+    background-color: #1a202c; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+
+
+
+
+
+
+/*Media queries for banner image*/
+@media (max-width: 1024px) {
+    .headerImg {
+        background-image: url('../assets/images/dashboardbanner-lg.gif');
+    }
+}
+
+@media (max-width: 767px) {
+    .headerImg {
+        background-image: url('../assets/images/dashboardbanner-med.gif');
+    }
+}
+
+@media (max-width: 425px) {
+    .headerImg {
+        background-image: url('../assets/images/dashboardbanner-smol.gif');
+    }
+}

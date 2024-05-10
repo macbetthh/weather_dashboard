@@ -5,28 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@1.3.0/dist/flowbite.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Weather Dashboard</h1>
+<body class="flex flex-col h-screen">
+    <header class="headerImg h-64">
     </header>
-    <div class="container">
-        <aside id="sidebar">
-            <h2>Search History</h2>
-            <ul id="search-history"></ul>
-        </aside>
-        <main>
-            <form id="search-form" class="search-form">
-                <input type="text" id="city-input" placeholder="Enter city name" required>
-                <button type="submit">Search</button>
-            </form>
-            <section id="current-weather-info"></section>
-            <section id="forecast-info"></section>
-        </main>
+
+    <!-- Search Bar and Recent Searches -->
+    <div class="w-full border-b border-gray-300 bg-gray-200 p-2">
+
+        <h2 class="font-bold text-lg mb-4 text-center text-darksky">Recent Searches</h2>
+        <ul id="search-history" class="flex flex-wrap gap-2 justify-center border-darksky pb-2 border-b-2 md:flex-row">
+            <!-- most recent searches from local storage data populate here --></ul>
+
+        <!-- <hr class="h-px my-8 w-3/4 bg-darksky mx-auto"> -->
+
+
+        <form class="flex items-center mb-2 justify-center" id="search-form">
+            <input id="city-input" type="search" class="form-input w-1/2 rounded-lg p-2 border-2 border-gray-300" placeholder="Enter city name..." required>
+            <button class="ml-2 bg-MarianBlue hover:bg-darksky text-white p-2 rounded-lg border-2 border-ColumbiaBlue" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+        </form>
+
     </div>
-    <footer>
-        <h3>&copy; 2024 Weather Dashboard by @macbetthh</h3>
+    
+    <!-- Main Content -->
+    <main class="flex-1 overflow-auto p-4">
+
+        <section id="current-weather-info"><!-- current weather data populates here --></section>
+
+        <section id="forecast-info" class="flex flex-wrap justify-center"><!-- forecast data populates here --></section>
+
+    </main>
+
+
+    <!--footer section -->
+    <footer class="bg-darksky text-white p-4 text-center">
+        <p>Developed and Designed by macbetthh || © 2024</p>
     </footer>
+
+    <!-- scripting linking & tailwind customisation-->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.3.0/dist/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        transparent: 'transparent',
+                        current: 'currentColor',
+                        'darksky': '#0B041D',
+                        'ColumbiaBlue': '#C5D7D9',
+                        'RoyalBlue': '#152066',
+                        'MarianBlue': '#3342A0',
+                        'test1': '#E5F3F3',
+                        'test2': '#7886e3',
+                        'iconBG': '#eff6ff',
+                        'lightLite': '#E8F2F6',
+                        'gradientDark': '#7A88E3'
+                    },
+                    
+                    opacity: {
+                        '85': '0.85',
+                        '95': '0.95'
+                    },
+                }
+            },
+        }
+    </script>
     <script src="./assets/script.js"></script>
 </body>
 </html>
+
+
+<!-- 
+~ change recent search mobile responsive to go to one column instead of two
+~ change recent search bubbles to look cooler
+~ change background colors slightly
+~ change card designs for current/forecast
+~ move headings for current/forecast to center and inside the populated cards instead of always being on the page
+~ change fonts - find a cool font pairing
+~ figure out how to add the state
+~ fix recent searches covering hr (change hr to bottom border on recent searches - 1px)
+-->
