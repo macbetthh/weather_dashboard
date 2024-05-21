@@ -13,6 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow: hidden;
 }
 
 header {
@@ -33,6 +34,7 @@ main {
     flex: 1; 
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 
@@ -72,8 +74,10 @@ ul li {
     justify-content: center;
 }
 
-
-
+/*fixes shrinking issue on smaller screens*/
+#current-weather-info, #forecast-info {
+    flex: 1; 
+}
 
 
 
