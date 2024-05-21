@@ -2,7 +2,7 @@
 
 ## Description
 
-In this Bootcamp challenge, students create a weather dashboard that allows users to search for a city's current weather and a 5-day forecast. It includes displaying weather conditions, temperature, humidity, wind speed, and a search history feature.
+In this Bootcamp challenge, I was reqauired to create a weather dashboard that allows users to search for a city's current weather and a 5-day forecast. It includes displaying weather conditions, temperature, humidity, wind speed, and a search history feature.
 
 ## Features
 
